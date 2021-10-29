@@ -1,0 +1,8 @@
+{
+  "back_online": "تمت استعادة الاتصال بالإنترنت",
+  "no_internet_connection": "لا يتوفر اتصال بالانترنت",
+  "try_again": "حاول مرة أخري",
+  "an_error_occurred_please_try_again": "حدث خطا يرجي المحاوله مره اخري",
+  "network_error_message": "يرجي التحقق من الإتصال بالإنترنت",
+  "error": "حدث خطأ ما"
+}
