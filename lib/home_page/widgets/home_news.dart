@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_covid_app/details_page/ui/post_detail.dart';
 import 'package:my_covid_app/home_page/logic/fetch_api.dart';
 import 'package:my_covid_app/states/end_points.dart';
 import 'package:my_covid_app/states/states.dart';
@@ -47,21 +48,27 @@ class _HomeNewsState extends State<HomeNews> {
               return (index < 1)?
               Padding(
                 padding: const EdgeInsets.all(14),
-                child: Column(
-                  children: [
-                    Image.network('${HomeApi.get(context).storageUrl}${HomeApi.get(context).allNews[index]['photo']['path']}'
-                    ),
-                    Text(
-                      "${HomeApi.get(context).allNews[index]['title']}",
-                      style: const TextStyle(
-                        fontFamily: 'TheSans',
-                        fontSize: 18,
-                        color: Color(0xff000000),
-                        fontWeight: FontWeight.w700,
+                child: InkWell(
+                  onTap: () {
+                      HomeApi.get(context).setPostsDetail(s:HomeApi.get(context).allNews[index]);
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => PostDetail(),));
+                    },
+                  child: Column(
+                    children: [
+                      Image.network('${HomeApi.get(context).storageUrl}${HomeApi.get(context).allNews[index]['photo']['path']}'
                       ),
-                      textAlign: TextAlign.start,
-                    ),
-                  ],
+                      Text(
+                        "${HomeApi.get(context).allNews[index]['title']}",
+                        style: const TextStyle(
+                          fontFamily: 'TheSans',
+                          fontSize: 18,
+                          color: Color(0xff000000),
+                          fontWeight: FontWeight.w700,
+                        ),
+                        textAlign: TextAlign.start,
+                      ),
+                    ],
+                  ),
                 ),
               ):const SizedBox();
             },

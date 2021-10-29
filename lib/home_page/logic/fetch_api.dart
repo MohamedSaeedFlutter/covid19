@@ -36,10 +36,14 @@ class HomeApi extends Cubit<ChangState> {
   var allNews = [];  setNews (var s){ allNews = s ;
                       // emit(SetNewsState());
   }
-  String postDetail = ""; setPostsDetail ({var s}){ postDetail = s ; }
+  var postDetail ; setPostsDetail ({var s}){ postDetail = s ;
+  emit(PostDetailState());}
   var drawerval ; setDrawer(var x){drawerval = x; emit(SetDrawerState());}
   bool bottomstate = false; setBottomState(){ bottomstate = true; emit(SetBottomState());}
-  bool drawerstate = false;  showDrawerState(){ drawerstate = !drawerstate; emit(ShowDrawerState());}
+  bool drawerstate = false;
+  showDrawerState(){ drawerstate = !drawerstate;
+  emit(ShowDrawerState());
+  }
   var allSubsList = [];  setSubjects (var s){ allSubsList = s ; }
   var allInfographicList = [];  setInfographicList (var s){ allInfographicList = s ;
                                 // emit(SetInfographicListState());
@@ -64,10 +68,10 @@ String question =
     "https://www.covidfacts.ps/ar/api/getCovidDatabaseSettings?fbclid=IwAR0Eqn8baHcVu4Yo0EMiOcUktiMuk6gc6H7JY2QZLCEXSjMrljLRdSfIBp4";
 String staticPages =
     "https://www.covidfacts.ps/ar/api/getAllStaticPage?fbclid=IwAR0eEaCski48i0SdjcqN4zMvnnjZtllcnOCVCW3ZB3sVp5fUnWsuL4Up_4o";
-int selectedIndex = 3;
- onItemTapped(int index) {
+var selectedIndex = 3;
+ onItemTapped(var index ) {
       selectedIndex = index;
-emit(SelectedIndexState());
+emit(SelectedState());
 }
 
   Future<dynamic> getData(String x) async {

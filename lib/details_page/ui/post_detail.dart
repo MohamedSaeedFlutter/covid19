@@ -4,101 +4,98 @@ import 'package:my_covid_app/home_page/logic/fetch_api.dart';
 
 
 class PostDetail extends StatefulWidget {
-      PostDetail({this.data });
-      var data;
-      // int i ;
+
 
       @override
   _PostDetailState createState() => _PostDetailState();
 }
 
 class _PostDetailState extends State<PostDetail> {
-  String photoPath,title,subTitle,shortText,text;  var info , storageUrl;
 @override
 void initState() {
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
-    photoPath = widget.data['photo']['path'];
-    title = widget.data['title'];
-    subTitle = widget.data['sub_title'];
-    shortText = widget.data['short_text'];
-    text = widget.data['text'];
-    info = HomeApi.get(context).allInfographicList;
-    storageUrl = HomeApi.get(context).storageUrl;
     return
-      Scrollbar(
-        child: SingleChildScrollView(
-            child:
-    Column( children: [
-    title != null ?
-    Positioned(
-    child: Text(
-    title,
-    style: const TextStyle(
-    fontFamily: 'TheSans',
-    fontSize: 18,
-    color: Color(0xff000000),
-    fontWeight: FontWeight.w700,
-    ),
-    textAlign: TextAlign.end,
-    ),
-    ):const SizedBox(),
-    subTitle != null?
-    Text(
-    subTitle,
-    style: const TextStyle(
-    fontFamily: 'TheSans Plain',
-    fontSize: 14,
-    color: Color(0xff2f3334),
-    ),
-    textAlign: TextAlign.right,
-    ):const SizedBox(),
-    photoPath != null?
-    Container(child: Image.network('${HomeApi.get(context).storageUrl}$photoPath',
-    fit: BoxFit.fill,),
-    height: 200,width: MediaQuery.of(context).size.width,):const SizedBox(),
-    // shortText != null ?
-    // Text( shortText,
-    // style: const TextStyle(
-    // fontFamily: 'TheSans Plain',
-    // fontSize: 15,
-    // color: Color(0xff7d7d7d),
-    // height: 2,
-    // ),
-    // textHeightBehavior: const TextHeightBehavior(applyHeightToFirstAscent: false),
-    // textAlign: TextAlign.right,
-    // ):const SizedBox(),
-    text != null ?
-    Padding(
-    padding: const EdgeInsets.symmetric(vertical: 12,horizontal: 18),
-    child: Scrollbar(
-    child: SingleChildScrollView(
-    child: Html( data: text, ),
-    ),
-    ),
-    ):const SizedBox(),
-    Expanded(child: GridView.builder(
-    shrinkWrap: true,
-    physics: const ScrollPhysics(),
-    scrollDirection: Axis.horizontal,
-    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-    crossAxisCount: 3,
-    ),
-    itemCount: HomeApi.get(context).allInfographicList.length,
-    itemBuilder: (BuildContext context, int index) {
-    return Card(
-    color: Colors.amber,
-    child: Image.network(
-    "$storageUrl${info[index]["photo"]["path"]}"
-    ),
-    );
-    }
-    ),
-    ),
-    ])
-    ));
+      Scaffold(
+        body:  Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 26),
+          child: Column( children: [
+            HomeApi.get(context).postDetail['title'] != null ?
+          Positioned(
+          child: Text(
+            HomeApi.get(context).postDetail['title'],
+          style: const TextStyle(
+          fontFamily: 'TheSans',
+          fontSize: 18,
+          color: Color(0xff000000),
+          fontWeight: FontWeight.w700,
+          ),
+          textAlign: TextAlign.end,
+          ),
+          )
+              :const SizedBox(),
+            HomeApi.get(context).postDetail['sub_title'] != null?
+          Text(
+            HomeApi.get(context).postDetail['sub_title'],
+          style: const TextStyle(
+          fontFamily: 'TheSans Plain',
+          fontSize: 14,
+          color: Color(0xff2f3334),
+          ),
+          textAlign: TextAlign.right,
+          )
+              :const SizedBox(),
+          HomeApi.get(context).postDetail['photo']['path'] != null?
+          Image.network('${HomeApi.get(context).storageUrl}${HomeApi.get(context).postDetail['photo']['path']}',
+          fit: BoxFit.fill,)
+              :const SizedBox(),
+          //   HomeApi.get(context).postDetail['short_text'] != null ?
+          // Text( HomeApi.get(context).postDetail['short_text'],
+          // style: const TextStyle(
+          // fontFamily: 'TheSans Plain',
+          // fontSize: 15,
+          // color: Color(0xff7d7d7d),
+          // height: 2,
+          // ),
+          // textHeightBehavior: const TextHeightBehavior(applyHeightToFirstAscent: false),
+          // textAlign: TextAlign.right,
+          // ):const SizedBox(),
+
+          Expanded(
+            child: ListView( shrinkWrap: true,
+            scrollDirection: Axis.vertical,
+            physics: const ScrollPhysics(),
+             children: [
+               HomeApi.get(context).postDetail['text'] != null ?
+               Html( data: HomeApi.get(context).postDetail['text'],):const SizedBox(),
+              // Expanded(child: GridView.builder(
+              //     shrinkWrap: true,
+              //     physics: const ScrollPhysics(),
+              //     scrollDirection: Axis.horizontal,
+              //     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              //       crossAxisCount: 3,
+              //     ),
+              //     itemCount: HomeApi.get(context).allInfographicList.length,
+              //     itemBuilder: (BuildContext context, int index) {
+              //       return
+              //         HomeApi.get(context).allInfographicList[index]["photo"]["path"] != null ?
+              //         Card(
+              //           color: Colors.amber,
+              //           child: Image.network(
+              //         "${HomeApi.get(context).storageUrl}${HomeApi.get(context).allInfographicList[index]["photo"]["path"]}"
+              //           ),
+              //         ):const SizedBox();
+              //     }
+              // ),
+              // )
+                  ]
+            ),
+          ),
+          ]),
+        ),
+      );
         }
         }
 

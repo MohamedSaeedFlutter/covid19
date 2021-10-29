@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_covid_app/details_page/ui/post_detail.dart';
 import 'package:my_covid_app/home_page/logic/fetch_api.dart';
 
 
@@ -33,50 +34,62 @@ class _AllSehiaStackState extends State<AllSehiaStack> {
           ),
           textAlign: TextAlign.right,
         ),
-   ListView.builder(
+   Expanded(
+     child: ListView.builder(
   physics: const ScrollPhysics(),
   shrinkWrap: true,
 scrollDirection: Axis.vertical,
   itemCount:allSehiaList?.length,
   itemBuilder: (context, index) {
   return
-        Padding(
-        padding: const EdgeInsets.all(14),
-        child: Row( mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Container( width: width * .45,
+          Padding(
+          padding: const EdgeInsets.all(14),
+          child: InkWell(
+            onTap: () {
+              HomeApi.get(context).setPostsDetail(s:allSehiaList[index]);
+Navigator.push(context, MaterialPageRoute(builder: (context) => PostDetail(),));
+            },
+              child:
+              Row( mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+              SizedBox( width: width * .45,
               child: Text(
-               allSehiaList[index]["title"],
-                style: const TextStyle(
-                  fontFamily: 'TheSans',
-                  fontSize: 14,
-                  color: Color(0xff000000),
-                  fontWeight: FontWeight.w400,
-                ),
-                textAlign: TextAlign.start,
+              allSehiaList[index]["title"],
+              style: const TextStyle(
+              fontFamily: 'TheSans',
+              fontSize: 14,
+              color: Color(0xff000000),
+              fontWeight: FontWeight.w400,
               ),
-            ),
-            Expanded(
+              textAlign: TextAlign.start,
+              ),
+              ),
+              Expanded(
               child: Stack(
-                  alignment: Alignment.center,
-                  children:[
-                Image.network(
-            '$storageUrl${allSehiaList[index]['photo']['path']}',
-                   ),
+              alignment: Alignment.center,
+              children:[
+              Image.network(
+              '$storageUrl${allSehiaList[index]['photo']['path']}',
+              ),
 
-          Positioned( top: 0,left: 0,
-            child: Container(
+              Positioned( top: 0,left: 0,
+              child: Container(
               decoration: const BoxDecoration(color: Colors.white),
               child: IconButton(
-                onPressed: () {
+              onPressed: () {
               },
-                 icon: const Icon(Icons.share),),
-            ),
-          )],
-        ),
-      )]));
+              icon: const Icon(Icons.share),),
+              ),
+              )],
+              ),
+              )
+              ]
+              )
+
+          ));
   },
-)]);
+),
+   )]);
        //  :const Center(child: Text("جارى جلب البيانات"),)
        // :const Center(child: Text("جارى جلب البيانات"),))]);
         // },

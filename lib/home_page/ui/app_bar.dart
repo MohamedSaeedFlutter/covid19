@@ -6,8 +6,8 @@ class Appbar extends StatelessWidget  with PreferredSizeWidget{
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-
+    return
+      AppBar(
         backgroundColor: kMainColor,
         leading: IconButton(
           icon: const Icon(Icons.search),
@@ -15,7 +15,6 @@ class Appbar extends StatelessWidget  with PreferredSizeWidget{
           color: Colors.white,
           onPressed: () {},
         ),
-
         elevation: 0.0,
         actions:  <Widget>[
           IconButton( icon : const Icon(Icons.menu),

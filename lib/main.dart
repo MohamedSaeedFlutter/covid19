@@ -27,28 +27,27 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:  MyHomePage(),
+      home:  const HomeScreen(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-
-
-
-  @override
-  Widget build(BuildContext context) {
-    double topMarginHeight = MediaQuery.of(context).padding.top;
-    double cAppbarHeight = AppBar().preferredSize.height;
-HomeApi.get(context).setHeights(apbar:cAppbarHeight,tpbar: topMarginHeight);
-    return Scaffold(
-        appBar: Appbar(),
-      body: const HomeScreen());
-  }
-}
+// class MyHomePage extends StatefulWidget {
+//
+//   @override
+//   State<MyHomePage> createState() => _MyHomePageState();
+// }
+//
+// class _MyHomePageState extends State<MyHomePage> {
+//
+//
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     double topMarginHeight = MediaQuery.of(context).padding.top;
+//     double cAppbarHeight = AppBar().preferredSize.height;
+// HomeApi.get(context).setHeights(apbar:cAppbarHeight,tpbar: topMarginHeight);
+//     return Scaffold(
+//       body: const HomeScreen());
+//   }
+// }

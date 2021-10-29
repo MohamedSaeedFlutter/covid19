@@ -50,75 +50,76 @@ class Drawer0 extends StatelessWidget {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-    return ListView(
-      shrinkWrap: true,scrollDirection: Axis.vertical, physics: const ScrollPhysics(),
-      children: [
-        Container(
-            color: const Color(0xffffffff),
-            height: 150,
-            width: MediaQuery.of(context).size.width,
-            child: SvgPicture.asset("assets/images/svg/covid_home.svg")),
-        Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.only(top: 10),
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(25.0),
-              topRight: Radius.circular(25.0),
-            ),
-            color: Color(0xf22f97b2),
-          ),
-          child: Column(
-            children: [
-              const Text(
-                'القائمة الرئيسية',
-                style: TextStyle(
-                  fontFamily: 'TheSans',
-                  fontSize: 16,
-                  color: Color(0xffc2faff),
-                  fontWeight: FontWeight.w700,
+    return
+      Column(
+        children: [
+          Container(
+              color: const Color(0xffffffff),
+              height: 150,
+              width: MediaQuery.of(context).size.width,
+              child: SvgPicture.asset("assets/images/svg/covid_home.svg")),
+          Expanded(
+            child: Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              padding: const EdgeInsets.only(top: 10),
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(25.0),
+                  topRight: Radius.circular(25.0),
                 ),
-                textAlign: TextAlign.right,
+                color: Color(0xf22f97b2),
               ),
-              SingleChildScrollView(
-                child: Expanded(
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: drawerModel.length,
-                      itemBuilder: (context, index) {
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            TextButton(
-                              onPressed: () {
-                                HomeApi.get(context).showDrawerState();
-                                  HomeApi.get(context).setDrawer(x[index]);
-                              },
-                              child: Text(
-                                drawerModel[index],
-                                style: const TextStyle(
-                                  color: Color(0xffffffff),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: width * 0.04,
-                            ),
-                            Image.asset(icons[index]),
-                            SizedBox(
-                              width: width * 0.04,
-                            ),
-                          ],
-                        );
-                      },
+              child: Column(
+                children: [
+                  const Text(
+                    'القائمة الرئيسية',
+                    style: TextStyle(
+                      fontFamily: 'TheSans',
+                      fontSize: 16,
+                      color: Color(0xffc2faff),
+                      fontWeight: FontWeight.w700,
                     ),
+                    textAlign: TextAlign.right,
                   ),
+                 Expanded(
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: drawerModel.length,
+                          itemBuilder: (context, index) {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                TextButton(
+                                  onPressed: () {
+                                    HomeApi.get(context).showDrawerState();
+                                      HomeApi.get(context).setDrawer(x[index]);
+                                  },
+                                  child: Text(
+                                    drawerModel[index],
+                                    style: const TextStyle(
+                                      color: Color(0xffffffff),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: width * 0.04,
+                                ),
+                                Image.asset(icons[index]),
+                                SizedBox(
+                                  width: width * 0.04,
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                      ),
+
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-      ],
-    );
+        ],
+      );
   }
 }

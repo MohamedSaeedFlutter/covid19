@@ -14,6 +14,10 @@ class SetSnapState extends ChangState {}
 
 class SelectedIndexState extends ChangState {}
 
+class PostDetailState extends ChangState {}
+
+class SelectedState extends ChangState {}
+
 class SetBottomState extends ChangState {}
 
 class SetSearchFieldState extends ChangState {}
