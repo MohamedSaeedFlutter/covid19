@@ -1,7 +1,9 @@
 import 'package:adobe_xd/adobe_xd.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:my_covid_app/home_page/logic/fetch_api.dart';
 import 'package:my_covid_app/home_page/ui/home_screen.dart';
+import 'package:my_covid_app/states/end_points.dart';
 
 class SplashBackground extends StatefulWidget {
   @override
@@ -9,8 +11,30 @@ class SplashBackground extends StatefulWidget {
 }
 
 class _SplashBackgroundState extends State<SplashBackground> {
+
+  Future<void> doSomeAsyncStuff() async {
+    print("..........0123456789...........................");
+    await HomeApi.get(context).getStatistics(EndPoints.statistics);
+    await HomeApi.get(context).getArticles(EndPoints.articles);
+    await HomeApi.get(context).getNews(EndPoints.news);
+    await HomeApi.get(context).getInfographic(EndPoints.infographic);
+    await HomeApi.get(context).getQuestion(EndPoints.covidDatabaseSettingsSearch);
+    await HomeApi.get(context).getMotamin(EndPoints.motamin);
+    await HomeApi.get(context).getSehia(EndPoints.healthTopics);
+    await HomeApi.get(context).getStaticPages(EndPoints.staticPages);
+    print(".0123456789");
+    goToNextView();
+  }
+
+  @override
+void initState() {
+    doSomeAsyncStuff();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+
     return
         // BlocConsumer<HomeApi, ChangState>(listener: (context, state) {
         // print("State...$state");
@@ -1535,13 +1559,25 @@ class _SplashBackgroundState extends State<SplashBackground> {
     // });
   }
 
-  void goToNextView() {
-    Future.delayed(const Duration(milliseconds: 1800), () {
+  Future<void> goToNextView() async {
+  //   print(".0123456789");
+  // await HomeApi.get(context).getStatistics(EndPoints.statistics);
+  //   await HomeApi.get(context).getArticles(EndPoints.articles);
+  //   await HomeApi.get(context).getNews(EndPoints.news);
+  //   await HomeApi.get(context).getInfographic(EndPoints.infographic);
+  //   await HomeApi.get(context).getQuestion(EndPoints.covidDatabaseSettingsSearch);
+  //   await HomeApi.get(context).getMotamin(EndPoints.motamin);
+  //   await HomeApi.get(context).getSehia(EndPoints.healthTopics);
+  //   await HomeApi.get(context).getStaticPages(EndPoints.staticPages);
+    print("9874563210");
+    Future.delayed(
+        const Duration(milliseconds: 800), () {
       Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => const HomeScreen(),
           ));
-    });
+    }
+    );
   }
 }

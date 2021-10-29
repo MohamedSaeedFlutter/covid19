@@ -18,18 +18,18 @@ class _TopHomeContState extends State<TopHomeCont> {
   }
   @override
   Widget build(BuildContext context) {
-    return
-      BlocConsumer<HomeApi, ChangState>(
-    listener: (context, state) {
-      print(state);
-    },
-    builder: (context, state) {
-    print(state);
-    print(" bloc Consumer works");
-    return
-    FutureBuilder<dynamic>(
-    future: HomeApi.get(context).getStaticPages(EndPoints.staticPages),
-    builder: (context, snapshot) {
+    // return
+    //   BlocConsumer<HomeApi, ChangState>(
+    // listener: (context, state) {
+    //   print(state);
+    // },
+    // builder: (context, state) {
+    // print(state);
+    // print(" bloc Consumer works");
+    // return
+    // FutureBuilder<dynamic>(
+    // future: HomeApi.get(context).getStaticPages(EndPoints.staticPages),
+    // builder: (context, snapshot) {
      //  print("snapshot.data........${snapshot.data}");
      //   if (snapshot.connectionState != ConnectionState.done) {print("bad connection state top home");}
      // if (!snapshot.hasData) {print("no data top home");}
@@ -47,7 +47,7 @@ class _TopHomeContState extends State<TopHomeCont> {
                     Positioned(
                       child: CircleAvatar(radius: 120,
                         backgroundImage: NetworkImage(
-                          '${HomeApi.get(context).storageUrl}${HomeApi.get(context).staticPagesList[0]["photo"]["path"]}',
+                '${HomeApi.get(context).storageUrl}${HomeApi.get(context).staticPagesList[0]["photo"]["path"]}',
                         ),
                       ), right: 16,
                     ),
@@ -97,8 +97,8 @@ class _TopHomeContState extends State<TopHomeCont> {
               ">|&nbsp|strong|&|squo|b|p|/|;|&mdash|&ndash|:|_|<"), ' ') ?? "")
               : const SizedBox(),
         ],);
-    });
-    });
+    // });
+    // });
     }
 }
 

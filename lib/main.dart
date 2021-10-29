@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_covid_app/home_page/logic/fetch_api.dart';
 import 'package:my_covid_app/splash/presentation/splash_view.dart';
-import 'package:my_covid_app/states/end_points.dart';
-import 'package:my_covid_app/states/states.dart';
 
-import 'home_page/ui/app_bar.dart';
-import 'home_page/ui/home_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:  const HomeScreen(),
+      home:  const SplashView(),
     );
   }
 }

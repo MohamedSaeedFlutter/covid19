@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_covid_app/contact_pages/contact_us.dart';
+import 'package:my_covid_app/details_page/ui/covid_detail.dart';
 import 'package:my_covid_app/details_page/ui/post_detail.dart';
 import 'package:my_covid_app/home_page/logic/fetch_api.dart';
 import 'package:my_covid_app/home_page/ui/drawer0.dart';
@@ -17,16 +18,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-var _selectedIndex = 3;
+static var selectedIndex = 3;
   _onItemTapped(var index){
     setState(() {
-      _selectedIndex = index;
+      selectedIndex = index;
     });
   }
-bool _showDrawer = false;
-_showDrawerState(){
+bool _showDrawerVar = false;
+_showDrawerStateFunction(){
   setState(() {
-    _showDrawer = !_showDrawer;
+    _showDrawerVar = !_showDrawerVar;
   });
 }
   bool langClicked = false;
@@ -39,11 +40,11 @@ _showDrawerState(){
    List<Widget> get _widgetOptions => <Widget>[
      QuestionUi(),
      ContactUs(),
-     // const Text(""),
-     // const Text(""),
-     // const Text(""),
-      PostDetail(),
-     _showDrawer ?  Drawer0() : FirstScreen(),
+     CovidDetail(),
+     FirstScreen(),
+     Drawer0(),
+     // HomeApi.get(context).drawerstate?
+     // HomeApi.get(context).drawerval: Drawer0(),
    ];
 
   @override
@@ -61,10 +62,14 @@ _showDrawerState(){
             elevation: 0.0,
             actions:  <Widget>[
               IconButton( icon : const Icon(Icons.menu),
-                  onPressed: _showDrawerState),
+                  onPressed: () {
+                    return setState(() {
+                      selectedIndex = 4;
+                    });
+                  },),
             ]),
         body: Center(
-          child: _widgetOptions.elementAt(_selectedIndex),
+          child: _widgetOptions.elementAt(selectedIndex),
         ),
         drawer: Drawer0(),
         bottomNavigationBar: BottomNavigationBar(
@@ -96,7 +101,7 @@ _showDrawerState(){
               backgroundColor: kMainColor,
             ),
           ],
-          currentIndex: _selectedIndex,
+          currentIndex: selectedIndex < 4 ? selectedIndex : 3 ,
           selectedItemColor: Colors.amber[800],
           onTap: _onItemTapped,
         ),

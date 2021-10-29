@@ -29,21 +29,21 @@ String val = "يجب أن تعطى";
 
     return SingleChildScrollView(
       child:
-         BlocConsumer<HomeApi, ChangState>(
-        listener: (context, state) {print("State...$state");},
-    builder: (context, state) {
-        return FutureBuilder<dynamic>(
-            future: HomeApi.get(context).getStatistics(EndPoints.staticPages,),
-            builder: (context, snapshot) {
-              if (!snapshot.data) {
-                return const SizedBox(
-                  height: 5, width: 5, child: CircularProgressIndicator(),);
-              }
-              if (snapshot.connectionState != ConnectionState.done) {
-                return const SizedBox(
-                  height: 5, width: 5, child: CircularProgressIndicator(),);
-              }
-      return
+    //      BlocConsumer<HomeApi, ChangState>(
+    //     listener: (context, state) {print("State...$state");},
+    // builder: (context, state) {
+    //     return FutureBuilder<dynamic>(
+    //         future: HomeApi.get(context).getStatistics(EndPoints.staticPages,),
+    //         builder: (context, snapshot) {
+    //           if (!snapshot.data) {
+    //             return const SizedBox(
+    //               height: 5, width: 5, child: CircularProgressIndicator(),);
+    //           }
+    //           if (snapshot.connectionState != ConnectionState.done) {
+    //             return const SizedBox(
+    //               height: 5, width: 5, child: CircularProgressIndicator(),);
+    //           }
+    //   return
         Column(mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -122,12 +122,13 @@ String val = "يجب أن تعطى";
                 ),
               ),
             ]
-        );
-      // }
-    });
-        }
         )
-);
+      // }
+    // }
+    );
+        // }
+//         )
+// );
 
 
 

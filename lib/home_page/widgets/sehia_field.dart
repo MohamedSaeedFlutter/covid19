@@ -20,14 +20,14 @@ class _SehiaFieldState extends State<SehiaField> {
   }
   @override
   Widget build(BuildContext context) {
-     return BlocConsumer<HomeApi, ChangState>(
-    listener: (context, state) {
-    print(state);
-    },
-    builder: (context, state) {
-    return FutureBuilder<dynamic>(
-    future: HomeApi.get(context).getSehia(EndPoints.healthTopics),
-    builder: (context, snapshot) {
+    //  return BlocConsumer<HomeApi, ChangState>(
+    // listener: (context, state) {
+    // print(state);
+    // },
+    // builder: (context, state) {
+    // return FutureBuilder<dynamic>(
+    // future: HomeApi.get(context).getSehia(EndPoints.healthTopics),
+    // builder: (context, snapshot) {
     return  Column(children: [
       TextButton(
         onPressed: () {
@@ -99,7 +99,7 @@ class _SehiaFieldState extends State<SehiaField> {
                 ) :const SizedBox());
           })
     ],);
-    });
-    });
+    // });
+    // });
   }
 }

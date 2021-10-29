@@ -71,18 +71,19 @@ super.initState();
        ),
       ),
     // HomeApi.get(context).QuestionList == null ?
-    BlocConsumer<HomeApi, ChangState>(
-    listener: (context, state) {
-    print(state);
-    },
-    builder: (context, state) {
-    print(state);
-    print(" bloc Consumer works");
-    return Expanded(child:
-    FutureBuilder<dynamic>(
-    future: HomeApi.get(context).getQuestion(EndPoints.covidDatabaseSettingsSearch),
-    builder: (context, snapshot) {
-          return (snapshot.connectionState == ConnectionState.done) ?
+    // BlocConsumer<HomeApi, ChangState>(
+    // listener: (context, state) {
+    // print(state);
+    // },
+    // builder: (context, state) {
+    // print(state);
+    // print(" bloc Consumer works");
+    // return
+    Expanded(child:
+    // FutureBuilder<dynamic>(
+    // future: HomeApi.get(context).getQuestion(EndPoints.covidDatabaseSettingsSearch),
+    // builder: (context, snapshot) {
+    //       return (snapshot.connectionState == ConnectionState.done) ?
          ListView.builder(
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
@@ -111,12 +112,14 @@ super.initState();
                         style: const TextStyle(fontSize: 12,fontWeight: FontWeight.w300),),
                     ],
                   );
-              }): const SizedBox();
-    }),);
-
-    })
-        ],
-      );
+              }))]);
+    // : const SizedBox();
+    // }),
+  // );
+  //
+  //   })
+  //       ],
+  //     );
 
 
 

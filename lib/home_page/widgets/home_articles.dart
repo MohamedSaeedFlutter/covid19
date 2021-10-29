@@ -32,13 +32,13 @@ class _HomeArticlesState extends State<HomeArticles> {
           textAlign: TextAlign.right,
         ),
         // HomeApi.get(context).allArticles == null ?
-        BlocConsumer<HomeApi, ChangState>(
-        listener: (context, state) { print(state); },
-        builder: (context, state) { print(state); print(" bloc Consumer works");
-        return FutureBuilder<dynamic>(
-        future: HomeApi.get(context).getArticles(EndPoints.articles),
-        builder: (context, snapshot) {
-          return
+        // BlocConsumer<HomeApi, ChangState>(
+        // listener: (context, state) { print(state); },
+        // builder: (context, state) { print(state); print(" bloc Consumer works");
+        // return FutureBuilder<dynamic>(
+        // future: HomeApi.get(context).getArticles(EndPoints.articles),
+        // builder: (context, snapshot) {
+        //   return
           // (snapshot.connectionState == ConnectionState.done )? (snapshot.hasData)?
           ListView.builder(
             physics: const ScrollPhysics(),
@@ -100,12 +100,12 @@ Navigator.push(context, MaterialPageRoute(builder: (context) => PostDetail(),));
                 ),
               ):const SizedBox();
             },
-          );
+          )
  // : const SizedBox():const SizedBox();
 
-        },
-  );
-        },)
+        // },
+  // );
+        // },)
             // : const SizedBox()
       ],
     );

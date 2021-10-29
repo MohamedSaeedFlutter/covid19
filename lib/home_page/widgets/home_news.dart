@@ -33,13 +33,14 @@ class _HomeNewsState extends State<HomeNews> {
           textAlign: TextAlign.right,
         ),
         // HomeApi.get(context).allNews == null ?
-        BlocConsumer<HomeApi, ChangState>(
-        listener: (context, state) { print(state); },
-        builder: (context, state) { print(state); print(" bloc Consumer works");
-        return FutureBuilder<dynamic>(
-        future: HomeApi.get(context).getNews(EndPoints.news),
-        builder: (context, snapshot) {
-          return ListView.builder(
+        // BlocConsumer<HomeApi, ChangState>(
+        // listener: (context, state) { print(state); },
+        // builder: (context, state) { print(state); print(" bloc Consumer works");
+        // return FutureBuilder<dynamic>(
+        // future: HomeApi.get(context).getNews(EndPoints.news),
+        // builder: (context, snapshot) {
+        //   return
+            ListView.builder(
             physics: const ScrollPhysics(),
             shrinkWrap: true,
             scrollDirection: Axis.vertical,
@@ -72,10 +73,10 @@ class _HomeNewsState extends State<HomeNews> {
                 ),
               ):const SizedBox();
             },
-          );
-        },
-  );
-        },)
+  //         )
+  //       },
+  // );
+        // },)
 
         //     :ListView.builder(
         //   physics: const ScrollPhysics(),
@@ -107,7 +108,7 @@ class _HomeNewsState extends State<HomeNews> {
         //       ),
         //     ):const SizedBox();
         //   },
-        // )
+        )
       ],
     );
   }

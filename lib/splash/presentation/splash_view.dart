@@ -1,9 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:my_covid_app/splash/presentation/widgets/splash_background.dart';
-import 'package:my_covid_app/splash/presentation/widgets/splash_body.dart';
 import 'package:my_covid_app/states/constants.dart';
-import 'package:my_covid_app/states/states.dart';
 
 
 

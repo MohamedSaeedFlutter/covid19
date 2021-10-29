@@ -20,19 +20,20 @@ void initState() {
   @override
   Widget build(BuildContext context) {
 
-    return
+    // return
       // HomeApi.get(context).allInfographicList == null ?
-      BlocConsumer<HomeApi, ChangState>(
-    listener: (context, state) { print(state); },
-    builder: (context, state) { print(state); print(" bloc Consumer works");
+    //   BlocConsumer<HomeApi, ChangState>(
+    // listener: (context, state) { print(state); },
+    // builder: (context, state) { print(state); print(" bloc Consumer works");
     return Container( width: 350,height: 350,
       constraints: const BoxConstraints(
           minHeight: 300,maxHeight: 400,minWidth: 300,maxWidth: 400),
       child:
-      FutureBuilder<dynamic>(
-      future: HomeApi.get(context).getInfographic(EndPoints.infographic),
-      builder: (context, snapshot) { print(" snapshot ${HomeApi.get(context).allInfographicList}");
-    return  PhotoViewGallery.builder(
+    //   FutureBuilder<dynamic>(
+    //   future: HomeApi.get(context).getInfographic(EndPoints.infographic),
+    //   builder: (context, snapshot) { print(" snapshot ${HomeApi.get(context).allInfographicList}");
+    // return
+      PhotoViewGallery.builder(
       scrollPhysics: const BouncingScrollPhysics(),
       builder: (BuildContext context, int index) {
         return PhotoViewGalleryPageOptions(
@@ -53,9 +54,9 @@ void initState() {
           child: CircularProgressIndicator(
           ),
         ),
-      ),
-    );
-    }));
+      )));
+    // );
+    // }));
 
       //     Row(
       //       mainAxisAlignment: MainAxisAlignment.center,
@@ -85,7 +86,7 @@ void initState() {
       // }),
     // );
   // });
-});
+// });
     // : PhotoViewGallery.builder(
     //   scrollPhysics: const BouncingScrollPhysics(),
     //   builder: (BuildContext context, int index) {

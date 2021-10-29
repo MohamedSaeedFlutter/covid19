@@ -34,7 +34,7 @@ class Drawer0 extends StatelessWidget {
     "ارسل استفسارك",
     "اتصل بنا",
   ];
-  List<Widget> x = [
+  List<Widget> list = [
     const HomeArticles(),
     const HomeNews(),
     const AllSehiaStack(),
@@ -85,15 +85,15 @@ class Drawer0 extends StatelessWidget {
                  Expanded(
                         child: ListView.builder(
                           shrinkWrap: true,
-                          itemCount: drawerModel.length,
+                          itemCount: list.length,
                           itemBuilder: (context, index) {
                             return Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 TextButton(
                                   onPressed: () {
-                                    HomeApi.get(context).showDrawerState();
-                                      HomeApi.get(context).setDrawer(x[index]);
+                                      HomeApi.get(context).setDrawer(list[index]);
+                                      print("ok111111");
                                   },
                                   child: Text(
                                     drawerModel[index],

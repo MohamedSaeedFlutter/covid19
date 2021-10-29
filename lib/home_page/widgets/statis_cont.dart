@@ -24,20 +24,21 @@ class _StatisContState extends State<StatisCont> {
     var width = MediaQuery.of(context).size.width;
     return
     HomeApi.get(context).statistics == null ?
-      BlocConsumer<HomeApi, ChangState>(
-      listener: (context, state) {
-        print(state);
-      },
-      builder: (context, state) {
-        print(state);
-        print(" bloc Consumer works");
-        return FutureBuilder<dynamic>(
-          future: HomeApi.get(context).getStatistics(EndPoints.statistics),
-          builder: (context, snapshot) {
+      // BlocConsumer<HomeApi, ChangState>(
+      // listener: (context, state) {
+      //   print(state);
+      // },
+      // builder: (context, state) {
+      //   print(state);
+      //   print(" bloc Consumer works");
+      //   return FutureBuilder<dynamic>(
+      //     future: HomeApi.get(context).getStatistics(EndPoints.statistics),
+      //     builder: (context, snapshot) {
             // print("duration: $duration");
             // return (snapshot.connectionState == ConnectionState.done )?
             // (snapshot.hasData)?
-    return  Column(
+    // return
+      Column(
       children: [
         const Text(
           'فايروس كورونا في فلسطين',
@@ -57,7 +58,7 @@ class _StatisContState extends State<StatisCont> {
                 borderRadius: BorderRadius.circular(11.0),
                 color:  const Color(0xfff5f8fe),
               ),
-              child: Column( crossAxisAlignment: CrossAxisAlignment.center,
+              child: Column(
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 106,right: 24),
@@ -182,10 +183,10 @@ class _StatisContState extends State<StatisCont> {
           ],
         ),
       ],
-    );
-          },
-        );
-      },
+    // );
+    //       },
+    //     );
+    //   },
     ): Column(
       children: [
         const Text(
