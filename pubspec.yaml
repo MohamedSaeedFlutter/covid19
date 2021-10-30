@@ -52,6 +52,10 @@ dependencies:
   meta:
   flutter_cache_manager:
   photo_view:
+  share_plus:
+  cached_network_image:
+
+#  social_share:
 #  rxdart:
 #  bloc:
 #  get_it:
@@ -120,6 +124,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/
+    - assets/social/
     - assets/images/svg/
     - assets/fonts/
     - assets/fonts/Tajawal/

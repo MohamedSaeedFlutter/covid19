@@ -1,7 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:my_covid_app/details_page/ui/post_detail.dart';
 import 'package:my_covid_app/home_page/logic/fetch_api.dart';
+import 'package:my_covid_app/home_page/widgets/share_widget.dart';
 
 
 class AllNewsStack extends StatefulWidget {
@@ -69,15 +72,24 @@ Navigator.push(context, MaterialPageRoute(builder: (context) => PostDetail(),));
               child: Stack(
               alignment: Alignment.center,
               children:[
-              Image.network(
-              '$storageUrl${allNewsList[index]['photo']['path']}',
+                CachedNetworkImage(
+                imageUrl: '$storageUrl${allNewsList[index]['photo']['path']}',
+                placeholder: (context, url) => const CircularProgressIndicator(),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
-
+              //   Image.network(
+              // '$storageUrl${allNewsList[index]['photo']['path']}',
+              // ),
               Positioned( top: 0,left: 0,
               child: Container(
               decoration: const BoxDecoration(color: Colors.white),
               child: IconButton(
-              onPressed: () {
+              onPressed: () async {
+                var file = await DefaultCacheManager().getSingleFile(
+                    '$storageUrl${allNewsList[index]['photo']['path']}');
+                ShareLogic.onShare(context,
+                    allNewsList[index]["title"],
+                    imagePaths:  [file.path]);
               },
               icon: const Icon(Icons.share),),
               ),

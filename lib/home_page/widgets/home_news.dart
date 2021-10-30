@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_covid_app/details_page/ui/post_detail.dart';
 import 'package:my_covid_app/home_page/logic/fetch_api.dart';
+import 'package:my_covid_app/home_page/widgets/all_news.dart';
 import 'package:my_covid_app/states/end_points.dart';
 import 'package:my_covid_app/states/states.dart';
 
@@ -22,15 +23,27 @@ class _HomeNewsState extends State<HomeNews> {
   Widget build(BuildContext context) {
     return  Column(
       children: [
-        const Text(
-          'الأخـــــــبار',
-          style: TextStyle(
-            fontFamily: 'TheSans',
-            fontSize: 22,
-            color: Color(0xff343233),
-            fontWeight: FontWeight.w700,
+        TextButton(
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(
+              builder: (context) => const
+              Scaffold(
+                  body: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 20),
+                    child: AllNewsStack(),
+                  ))
+              ,)
+            );},
+          child: const Text(
+            'الأخـــــــبار',
+            style: TextStyle(
+              fontFamily: 'TheSans',
+              fontSize: 22,
+              color: Color(0xff343233),
+              fontWeight: FontWeight.w700,
+            ),
+            textAlign: TextAlign.right,
           ),
-          textAlign: TextAlign.right,
         ),
         // HomeApi.get(context).allNews == null ?
         // BlocConsumer<HomeApi, ChangState>(

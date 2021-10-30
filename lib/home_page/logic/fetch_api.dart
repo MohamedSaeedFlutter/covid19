@@ -29,7 +29,8 @@ class HomeApi extends Cubit<ChangState> {
   setDrawer(var x){emit(SetDrawerState()); drawerval = x; drawerstate = true;
   print("ok22222");
   }
-
+  bool isShare = false;
+  setShareDialoge(){  isShare = true;  emit(ShareIconState()); }
   var appbar ,topbar ,bnb;
   getRestHeight () {return appbar + topbar + bnb;}
   getTopHeight () {return appbar + topbar ;}

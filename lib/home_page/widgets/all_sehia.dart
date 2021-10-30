@@ -1,7 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:my_covid_app/details_page/ui/post_detail.dart';
 import 'package:my_covid_app/home_page/logic/fetch_api.dart';
+import 'package:my_covid_app/home_page/widgets/share_widget.dart';
+import 'package:share_plus/share_plus.dart';
 
 
 class AllSehiaStack extends StatefulWidget {
@@ -13,14 +17,29 @@ class AllSehiaStack extends StatefulWidget {
 
 class _AllSehiaStackState extends State<AllSehiaStack> {
   var allSehiaList = []; var storageUrl;
+  bool isShare = false;
   @override
   void initState() {
     allSehiaList =HomeApi.get(context).allSehialist;
     storageUrl = HomeApi.get(context).storageUrl;
     super.initState();
   }
+  // void onShare(BuildContext context ,String text ,var imagePaths) async {
+  //   if (imagePaths != null) {
+  //     await Share.shareFiles(imagePaths,
+  //         text: text,
+  //         subject: "Covid 19",
+  //     );
+  //   } else {
+  //     await Share.share(text,
+  //         subject: "Covid 19",
+  //     );
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
+    var box = context.findRenderObject() as RenderBox;
     var width = MediaQuery.of(context).size.width;
     return Column(
       children: [
@@ -41,8 +60,7 @@ class _AllSehiaStackState extends State<AllSehiaStack> {
 scrollDirection: Axis.vertical,
   itemCount:allSehiaList?.length,
   itemBuilder: (context, index) {
-  return
-          Padding(
+  return Padding(
           padding: const EdgeInsets.all(14),
           child: InkWell(
             onTap: () {
@@ -64,33 +82,55 @@ Navigator.push(context, MaterialPageRoute(builder: (context) => PostDetail(),));
               textAlign: TextAlign.start,
               ),
               ),
-                allSehiaList[index]['photo']['path'] != null?
+              //   allSehiaList[index]['photo']['path'] != null?
               Expanded(
               child: Stack(
               alignment: Alignment.center,
               children:[
-              Image.network(
-              '$storageUrl${allSehiaList[index]['photo']['path']}',
-              ),
-
+                CachedNetworkImage(
+                  imageUrl: '$storageUrl${allSehiaList[index]['photo']['path']}',
+                  placeholder: (context, url) => const CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                ),
+              // Image.network(
+              // '$storageUrl${allSehiaList[index]['photo']['path']}',
+              // ),
+              // HomeApi.get(context).isShare?
+              // Positioned( top: 0,left: 0,
+              //  child: SocialIcons(
+              //    image: '$storageUrl${allSehiaList[index]['photo']['path']}',
+              //    txt: allSehiaList[index]["title"],),
+              //             ):
               Positioned( top: 0,left: 0,
-              child: Container(
+              child:
+              Container(
               decoration: const BoxDecoration(color: Colors.white),
               child: IconButton(
-              onPressed: () {
+              onPressed: ()  async {
+                var file = await DefaultCacheManager().getSingleFile(
+                    '$storageUrl${allSehiaList[index]['photo']['path']}');
+               ShareLogic.onShare(context,
+                   allSehiaList[index]["title"],
+                  imagePaths:  [file.path]);
               },
               icon: const Icon(Icons.share),),
               ),
-              )],
               ),
-              ): const Expanded(child: SizedBox())
-              ]
+              ],
+              ),
               )
+    ])));
+                  // : const Expanded(child: SizedBox())
+              // ]
+              // )
 
-          ));
-  },
-),
-   )]);
+          // ));
+//   },
+// ),
+//  ]
+  }))]);
+
+    // );
        //  :const Center(child: Text("جارى جلب البيانات"),)
        // :const Center(child: Text("جارى جلب البيانات"),))]);
         // },
