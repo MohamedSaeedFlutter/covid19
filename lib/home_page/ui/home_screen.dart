@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:my_covid_app/contact_pages/contact_us.dart';
 import 'package:my_covid_app/details_page/ui/covid_detail.dart';
+import 'package:my_covid_app/details_page/ui/detail_covid.dart';
 import 'package:my_covid_app/details_page/ui/post_detail.dart';
+import 'package:my_covid_app/details_page/ui/we.dart';
 import 'package:my_covid_app/home_page/logic/fetch_api.dart';
 import 'package:my_covid_app/home_page/ui/drawer0.dart';
+import 'package:my_covid_app/home_page/widgets/all_articles.dart';
+import 'package:my_covid_app/home_page/widgets/all_news.dart';
+import 'package:my_covid_app/home_page/widgets/all_sehia.dart';
+import 'package:my_covid_app/home_page/widgets/home_articles.dart';
+import 'package:my_covid_app/home_page/widgets/home_news.dart';
+import 'package:my_covid_app/home_page/widgets/info_graphic.dart';
+import 'package:my_covid_app/home_page/widgets/question_home.dart';
 
 import 'package:my_covid_app/search_questions/ui/question_ui.dart';
 import 'package:my_covid_app/states/constants.dart';
@@ -11,17 +20,17 @@ import 'first_screen.dart';
 
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key key}) : super(key: key);
+   HomeScreen({this.selectedIndex});
+var selectedIndex = 3 ;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-static var selectedIndex = 3;
   _onItemTapped(var index){
     setState(() {
-      selectedIndex = index;
+     widget.selectedIndex = index;
     });
   }
 bool _showDrawerVar = false;
@@ -43,6 +52,15 @@ _showDrawerStateFunction(){
      CovidDetail(),
      FirstScreen(),
      Drawer0(),
+     const AllArticlesStack(),
+     const AllNewsStack(),
+     const AllSehiaStack(),
+     CovidDetail(),
+     Infografic(),
+     MnNahno(),
+     QuestionUi(),
+     QuestionHome(),
+     ContactUs(),
      // HomeApi.get(context).drawerstate?
      // HomeApi.get(context).drawerval: Drawer0(),
    ];
@@ -64,12 +82,12 @@ _showDrawerStateFunction(){
               IconButton( icon : const Icon(Icons.menu),
                   onPressed: () {
                     return setState(() {
-                      selectedIndex = 4;
+                      widget.selectedIndex = 4;
                     });
                   },),
             ]),
         body: Center(
-          child: _widgetOptions.elementAt(selectedIndex),
+          child: _widgetOptions.elementAt(widget.selectedIndex),
         ),
         drawer: Drawer0(),
         bottomNavigationBar: BottomNavigationBar(
@@ -101,7 +119,7 @@ _showDrawerStateFunction(){
               backgroundColor: kMainColor,
             ),
           ],
-          currentIndex: selectedIndex < 4 ? selectedIndex : 3 ,
+          currentIndex: widget.selectedIndex < 4 ? widget.selectedIndex : 3 ,
           selectedItemColor: Colors.amber[800],
           onTap: _onItemTapped,
         ),

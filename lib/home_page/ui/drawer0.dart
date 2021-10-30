@@ -4,6 +4,7 @@ import 'package:my_covid_app/contact_pages/contact_us.dart';
 import 'package:my_covid_app/details_page/ui/detail_covid.dart';
 import 'package:my_covid_app/details_page/ui/we.dart';
 import 'package:my_covid_app/home_page/logic/fetch_api.dart';
+import 'package:my_covid_app/home_page/ui/home_screen.dart';
 import 'package:my_covid_app/home_page/widgets/all_sehia.dart';
 import 'package:my_covid_app/home_page/widgets/home_articles.dart';
 import 'package:my_covid_app/home_page/widgets/home_news.dart';
@@ -45,7 +46,7 @@ class Drawer0 extends StatelessWidget {
     QuestionHome(),
     ContactUs()
   ];
-
+int i ;
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -85,14 +86,15 @@ class Drawer0 extends StatelessWidget {
                  Expanded(
                         child: ListView.builder(
                           shrinkWrap: true,
-                          itemCount: list.length,
+                          itemCount: drawerModel.length,
                           itemBuilder: (context, index) {
                             return Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 TextButton(
                                   onPressed: () {
-                                      HomeApi.get(context).setDrawer(list[index]);
+                    Navigator.push(context, MaterialPageRoute(builder: (context)
+                                            => HomeScreen(selectedIndex:  index + 5,),));
                                       print("ok111111");
                                   },
                                   child: Text(

@@ -4,18 +4,18 @@ import 'package:my_covid_app/details_page/ui/post_detail.dart';
 import 'package:my_covid_app/home_page/logic/fetch_api.dart';
 
 
-class AllSehiaStack extends StatefulWidget {
-  const AllSehiaStack({Key key}) : super(key: key);
+class AllNewsStack extends StatefulWidget {
+  const AllNewsStack({Key key}) : super(key: key);
 
   @override
-  _AllSehiaStackState createState() => _AllSehiaStackState();
+  _AllNewsStackState createState() => _AllNewsStackState();
 }
 
-class _AllSehiaStackState extends State<AllSehiaStack> {
-  var allSehiaList = []; var storageUrl;
+class _AllNewsStackState extends State<AllNewsStack> {
+  var allNewsList = []; var storageUrl;
   @override
   void initState() {
-    allSehiaList =HomeApi.get(context).allSehialist;
+    allNewsList =HomeApi.get(context).allNews;
     storageUrl = HomeApi.get(context).storageUrl;
     super.initState();
   }
@@ -25,7 +25,7 @@ class _AllSehiaStackState extends State<AllSehiaStack> {
     return Column(
       children: [
         const Text(
-          'مواضيع صحية',
+          'الأخبار',
           style: TextStyle(
             fontFamily: 'TheSans',
             fontSize: 22,
@@ -39,14 +39,14 @@ class _AllSehiaStackState extends State<AllSehiaStack> {
   physics: const ScrollPhysics(),
   shrinkWrap: true,
 scrollDirection: Axis.vertical,
-  itemCount:allSehiaList?.length,
+  itemCount:allNewsList?.length,
   itemBuilder: (context, index) {
   return
           Padding(
           padding: const EdgeInsets.all(14),
           child: InkWell(
             onTap: () {
-              HomeApi.get(context).setPostsDetail(s:allSehiaList[index]);
+              HomeApi.get(context).setPostsDetail(s:allNewsList[index]);
 Navigator.push(context, MaterialPageRoute(builder: (context) => PostDetail(),));
             },
               child:
@@ -54,7 +54,7 @@ Navigator.push(context, MaterialPageRoute(builder: (context) => PostDetail(),));
               children: [
               SizedBox( width: width * .45,
               child: Text(
-              allSehiaList[index]["title"],
+              allNewsList[index]["title"],
               style: const TextStyle(
               fontFamily: 'TheSans',
               fontSize: 14,
@@ -64,13 +64,13 @@ Navigator.push(context, MaterialPageRoute(builder: (context) => PostDetail(),));
               textAlign: TextAlign.start,
               ),
               ),
-                allSehiaList[index]['photo']['path'] != null?
+                allNewsList[index]['photo']['path'] != null?
               Expanded(
               child: Stack(
               alignment: Alignment.center,
               children:[
               Image.network(
-              '$storageUrl${allSehiaList[index]['photo']['path']}',
+              '$storageUrl${allNewsList[index]['photo']['path']}',
               ),
 
               Positioned( top: 0,left: 0,
@@ -83,7 +83,7 @@ Navigator.push(context, MaterialPageRoute(builder: (context) => PostDetail(),));
               ),
               )],
               ),
-              ): const Expanded(child: SizedBox())
+              ):const Expanded(child: SizedBox(),),
               ]
               )
 

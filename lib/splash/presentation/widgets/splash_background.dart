@@ -1575,7 +1575,7 @@ void initState() {
       Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const HomeScreen(),
+            builder: (context) =>  HomeScreen(selectedIndex:   3,),
           ));
     }
     );
