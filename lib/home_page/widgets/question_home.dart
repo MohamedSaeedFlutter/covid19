@@ -46,7 +46,8 @@ class QuestionHome extends StatelessWidget {
         Column( mainAxisAlignment: MainAxisAlignment.end,
           children: [
             CustumTextField2(hintTxt: 'علاج كوفيد باللقاح ...',
-              iconPath: 'assets/images/svg/rectangle.svg',),
+              // iconPath: 'assets/images/svg/rectangle.svg',
+            ),
             const Positioned(
               child: Text(
                 'طوارئ 24 ساعة',

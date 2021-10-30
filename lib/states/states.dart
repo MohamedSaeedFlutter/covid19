@@ -12,6 +12,8 @@ class PostUrlState extends ChangState {}
 
 class VarsState extends ChangState {}
 
+class SetSpecificQuestion extends ChangState {}
+
 class SetSnapState extends ChangState {}
 
 class SelectedIndexState extends ChangState {}

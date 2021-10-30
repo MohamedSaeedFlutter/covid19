@@ -75,7 +75,11 @@ _showDrawerStateFunction(){
               icon: const Icon(Icons.search),
               iconSize: 30.0,
               color: Colors.white,
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  widget.selectedIndex = 0;
+                });
+              },
             ),
             elevation: 0.0,
             actions:  <Widget>[

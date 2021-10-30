@@ -13,7 +13,11 @@ class HomeApi extends Cubit<ChangState> {
   var dropdownValue; dropButton (Object newValue) { dropdownValue = newValue;}
   //Pages..............................................................
   var staticPagesList = []; setStaticPages (var s) async {  staticPagesList = s ; }
-  var QuestionList = []; setQuestionList (var s) async { QuestionList = s ; }
+  var QuestionList = []; setQuestionList (var s) async {
+         QuestionList = s ;
+         emit(SetQuestionListState());
+  }
+  var specificQuestion = []; setSpecificQuestion(var s) async {specificQuestion = s; }
   var statistics;  setstatistics (var s) async { statistics = s ; }
   var motamin;  setMotamin (var s) async { motamin = s ;}
   var allPostsList = [];  setPosts (var s) async { allPostsList = s ; }
@@ -53,9 +57,10 @@ String staticPages =
     "https://www.covidfacts.ps/ar/api/getAllStaticPage?fbclid=IwAR0eEaCski48i0SdjcqN4zMvnnjZtllcnOCVCW3ZB3sVp5fUnWsuL4Up_4o";
 
 
-  Future<dynamic> getData(String x) async {
-   var body ;
-  var url = Uri.parse(EndPoints.basicUrl + x);
+  Future<dynamic> getSpecificQuestion(String x) async {
+   var body , output;
+  var url = Uri.parse(
+      EndPoints.basicUrl + EndPoints.covidDatabaseSettingsSearch + x);
   http.Response response = await http.get(url, headers: {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
@@ -75,7 +80,11 @@ String staticPages =
     print(
         "some Subjects other error or might be CORS policy error. you can add your url in CORS policy.");
   }
-  return body;
+   if(body == null){
+     return null;
+   }
+   QuestionList = [];
+   return setQuestionList(body["questionsData"]["data"]);
   }
 
  getQuestion(String x) async {
