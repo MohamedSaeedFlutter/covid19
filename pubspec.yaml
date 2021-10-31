@@ -102,7 +102,10 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+flutter_icons:
+  image_path: "assets/icon/icon0.png"
+  android: true
+  ios: true
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -130,6 +133,7 @@ flutter:
     - assets/fonts/Tajawal/
     - assets/fonts/TheSans/
     - assets/languages/
+    - assets/icon/
 
 
   fonts:

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:my_covid_app/contact_pages/widgets/custum_txt_field.dart';
 import 'package:my_covid_app/contact_pages/widgets/drop_down_button.dart';
 import 'package:my_covid_app/home_page/logic/fetch_api.dart';
-import 'package:my_covid_app/states/end_points.dart';
-import 'package:my_covid_app/states/states.dart';
+
 
 class ContactUs extends StatefulWidget {
   @override
@@ -29,21 +27,6 @@ String val = "يجب أن تعطى";
 
     return SingleChildScrollView(
       child:
-    //      BlocConsumer<HomeApi, ChangState>(
-    //     listener: (context, state) {print("State...$state");},
-    // builder: (context, state) {
-    //     return FutureBuilder<dynamic>(
-    //         future: HomeApi.get(context).getStatistics(EndPoints.staticPages,),
-    //         builder: (context, snapshot) {
-    //           if (!snapshot.data) {
-    //             return const SizedBox(
-    //               height: 5, width: 5, child: CircularProgressIndicator(),);
-    //           }
-    //           if (snapshot.connectionState != ConnectionState.done) {
-    //             return const SizedBox(
-    //               height: 5, width: 5, child: CircularProgressIndicator(),);
-    //           }
-    //   return
         Column(mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -100,22 +83,23 @@ String val = "يجب أن تعطى";
                   child: CustumTextField0(
                     hintTxt: HomeApi.get(context).staticPagesList[4]["fields"][5]["name"],)
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 200),
+              Positioned( right: 200,
                 child: Container(
-                  color: const Color(0xfff5f5f5),
+                  color: Color(0xff2f97b2),
+                  // decoration: BoxDecoration(color:
+                  // Color(0xff2f97b2),),
                   child: ElevatedButton(
                     child: const Text(
                       'ارســـــــــــال',
                       style: TextStyle(
                         fontFamily: 'TheSans Plain',
                         fontSize: 14,
-                        color: Color(0xff2f97b2),
+                        color: Color(0xffffffff),
                       ),
                       textAlign: TextAlign.right,
                     ),
                     onPressed: () {
-                      HomeApi.get(context).sendIstfsar(HomeApi.get(context).staticPagesList);
+                      HomeApi.get(context).sendIstfsar();
                     },
 
                   ),

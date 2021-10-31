@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_covid_app/states/end_points.dart';
 import 'package:my_covid_app/states/states.dart';
@@ -111,9 +112,9 @@ String staticPages =
     }
     setQuestionList(body["questionsData"]["data"]);
   }
-
+  Map<String ,dynamic> staticBody = {};
  getStaticPages(String x) async {
-    var body ;
+   Map<String ,dynamic> body = {};
     var url = Uri.parse(EndPoints.basicUrl + x);
     http.Response response = await http.get(url, headers: {
       'Content-Type': 'application/json',
@@ -134,6 +135,7 @@ String staticPages =
       print(
           "some Subjects other error or might be CORS policy error. you can add your url in CORS policy.");
     }
+    staticBody = body;
     setStaticPages(body["pages"]);
   }
 
@@ -314,16 +316,18 @@ getPosts(String x) async {
 
 
   int a = 4;
-  sendIstfsar(List<dynamic> data) async {
+  sendIstfsar() async {
    var body;
     var url = Uri.parse(
-        '${EndPoints.basicUrl}/saveMessageFromPage/${data[a]["id"]}'
-            '${data[a]["fields"].map(
+        '${EndPoints.basicUrl}'
+            '/saveMessageFromPage/4'
+            '${staticBody.entries.toList().asMap().map(
               (index, e) => MapEntry(index,
               '${index == 0 ? '?' : '&'}${e.key}=${e.value}'),
-        ).values.join('')}'
+        ).values.join('')}',
+      null,
     );
-    print("url.......$url");
+    print("url.....0123456789..$url");
     http.Response response = await http.get(url, headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
